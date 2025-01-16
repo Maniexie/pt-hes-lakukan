@@ -1,0 +1,60 @@
+8. Menurut Anda bagaimana cara kerja JWT (JSON Web Token) dan bagaimana cara memvalidasi
+token di server agar bisa diimplementasikan oleh frontend?
+
+- json webtoken adalah sebuah token / key yang wajib di milik oleh setiap 
+  user jika fiturnya menggunakan jwt_token sebagai validasi security.
+
+- cara untuk memvalidasi di frontend dengan fetching data , jika difrontend tidak berjalan
+  coba debugging terlebih dahulu , jika tidak menemukan masalahnya bisa di tanyakan dengan
+  tim backend terkait endpoint yang ingin di implementasikan 
+
+
+9. Jelaskan bagaimana Anda mendesain sistem e-commerce menggunakan arsitektur microservice. 
+Sebutkan minimal 4 service utama yang Anda buat dan bagaimana mereka saling berkomunikasi.
+
+untuk mendesain sistem e-commerce dengan sistem arsitektur microservice , yang bisa di deskripskan minimal 
+ada :
+-User Service => mengelola authentication / security
+-Product Service => mengelola produk , kategori ,detail produk, menyediakan harga dan menu pembelian 
+-Booking Service => mengatur transaksi atau order , memastikan stock order 
+-Payment Service => mengatur database transaction , mengatur status pemesanan 
+
+microservice berkomunikasi menggunakan Rest API untuk komunikasi cepat (synchronous) dan 
+Message Queue (Kafka/RabbitMQ) untuk event-driven(asynchronous)
+
+10. Apabila diberikan tabel orders dengan 1 juta data. Query untuk menghitung total pesanan per 
+bulan ternyata request-nya mulai melambat. Menurut Anda apa langkah yang tepat untuk 
+mengoptimalkan performa query ini? anda boleh mencantumkan studi case terkait.
+
+studi kasus marketplace , setiap hari bahkan menit . pembeli selalu mencari barang di marketplace , 
+dengan mempercepat pengmbilan data yang begitu cepat  dikarenakan pihak developer marketplace menggunakan query indexing untuk penampilan data.
+seperti menggunakan paginatiion , dengan per pagination hanya mengambail produk contohnya 30/pagination . jadi tidak secara langsung data dari database
+di get secara bersamaan atau di get 1 juta data .
+
+untuk penyimpanan data sementara bisa menggunakan redis untuk caching query , 
+agar tidak langusng mengambil data dari database / agar tidak mengganggu performa database. 
+
+tetapi jika ingin 1/user (per/user) bisa get data dengan batasan beberapa waktu , bisa di limitasi untuk pengambilan data(get data).
+
+11. Apakah anda setuju bahwa menginisiasi proyek aplikasi dari 0 harus dimulai dengan microservice? 
+jelaskan alasan Anda! (boleh mencantumkan studi case terkait).
+
+menurut saya itu terlalu mubazir , kalau di awal-awal membangun sebuah website . jika masih sederhana bisa menggunakan monolith .
+jika kebutuhan sudah mulai membesar user dari sebuah product , itu bisa di pertimbangkan , apakah menggunakan monolith atau microservice untuk 
+kebutuhan sepesifik services .
+
+jika dikaitkan lagi dengan marketplace , sebaiknya menggunakan microservice untuk kebutuhan spesifik untuk services ,
+agar tidak menunggu antar developer untuk mengurusi suatu fitur.
+
+12. sebagai backend developer, apa masalah terbesar atau terberat yang pernah Anda alami? Dan 
+bagaimana cara anda mengatasi masalah tersebut?
+
+masalah terberat saya saat ini adalah kebutuhan bisnis / perusahaan / client yang berubah dengan cepat bisa menjadi tantangan besar. 
+misalnya, pada saat aplikasi berkembang, perubahan fitur memerlukan 
+modifikasi yang kompleks pada backend. Hal ini bisa menjadi sulit untuk dikelola tanpa merusak fungsionalitas utama.
+
+yang mulai saya lakukan adalah menggunakan prinsip-prinsip modularitas dalam penulisan kode, 
+memecah fungsi besar menjadi layanan-layanan yang lebih kecil dan terpisah. 
+ini memudahkan pemeliharaan kode dan penyesuaian fitur.
+ 
+

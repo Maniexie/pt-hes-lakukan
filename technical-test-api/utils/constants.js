@@ -16,7 +16,7 @@ const generateNPM = async () => {
 
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000,
-  max: 10,
+  max: 100,
   message: {
     status_code: 429,
     message: "Too many requests, please try again later",

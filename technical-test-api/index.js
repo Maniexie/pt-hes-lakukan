@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //to do code here
-
 app.use(limiter);
 
 app.use("/api/v1", routes);

@@ -53,7 +53,7 @@ const getDetailMahasiswa = async (req, res) => {
   const mahasiswa = await Mahasiswa.findById(id);
   try {
     if (!mahasiswa) {
-      res.status(404).json({
+      return res.status(404).json({
         message: "Mahasiswa Not Found",
       });
     }
